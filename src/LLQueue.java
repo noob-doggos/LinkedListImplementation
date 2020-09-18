@@ -39,13 +39,13 @@ public class LLQueue
     // offer(enqueue) adds the object at the back of the queue
     public void offer(Object o)
     {
-        Node uwu = this.front;
+        Node curNode = this.front;
         Node prev = null;
 
-        while (uwu != null)
+        while (curNode != null)
         {
-            prev = uwu;
-            uwu = uwu.next;
+            prev = curNode;
+            curNode = curNode.next;
         }
 
         if (prev == null)
@@ -77,10 +77,10 @@ public class LLQueue
     public int size()
     {
         int count = 0;
-        Node uwu = this.front;
-        while (uwu != null)
+        Node curNode = this.front;
+        while (curNode != null)
         {
-            uwu = uwu.next;
+            curNode = curNode.next;
             count++;
         }
         return count;

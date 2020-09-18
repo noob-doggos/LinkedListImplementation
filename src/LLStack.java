@@ -66,10 +66,10 @@ public class LLStack
     public int size()
     {
         int count = 0;
-        Node uwu = this.head;
-        while (uwu != null)
+        Node curNode = this.head;
+        while (curNode != null)
         {
-            uwu = uwu.next;
+            curNode = curNode.next;
             count++;
         }
         return count;
@@ -78,14 +78,14 @@ public class LLStack
     // Finds if there is match for the given object
     public boolean contains(Object item)
     {
-        Node uwu = this.head;
-        while (uwu != null)
+        Node curNode = this.head;
+        while (curNode != null)
         {
-            if (item.equals(uwu.data))
+            if (item.equals(curNode.data))
             {
                 return true;
             }
-            uwu = uwu.next;
+            curNode = curNode.next;
         }
         return false;
     }
