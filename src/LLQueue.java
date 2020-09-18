@@ -15,7 +15,7 @@ public class LLQueue
         // Constructor with no parameters for inner class
         public Node()
         {
-
+            this(null, null);
         }
 
         // Parametrized constructor for inner class
@@ -23,20 +23,39 @@ public class LLQueue
         {
             // to do: Data part of Node is an Object
             // to do: Link to next node is a type Node
+            this.data = newData;
+            this.next = nextLink;
         }
     }
 
     private Node front;
-    private Node back;
+    // private Node back;
 
-    public LLQueueForStudents() {
-     // to do
+    public LLQueue()
+    {
+        // to do
     }
 
     // offer(enqueue) adds the object at the back of the queue
     public void offer(Object o)
     {
-        // to do
+        Node uwu = this.front;
+        Node prev = null;
+
+        while (uwu != null)
+        {
+            prev = uwu;
+            uwu = uwu.next;
+        }
+
+        if (prev == null)
+        {
+            this.front = new Node(o, null);
+        }
+        else
+        {
+            prev.next = new Node(o, null);
+        }
     }
 
     // poll(dequeue): retrieves and removes the head of this queue,
@@ -44,25 +63,40 @@ public class LLQueue
     public Object poll()
     {
         // to do
+        if (this.front == null)
+        {
+            return null;
+        }
+
+        Object toReturn = this.front.data;
+        this.front = this.front.next;
+        return toReturn;
     }
 
     // Returns the size of linked list by traversing the list
     public int size()
     {
-        // to do
+        int count = 0;
+        Node uwu = this.front;
+        while (uwu != null)
+        {
+            uwu = uwu.next;
+            count++;
+        }
+        return count;
     }
 
     // peek: Retrieves, but does not remove, the head of this queue,
     // or returns null if this queue is empty.
     public Object peek()
     {
-        // to do
+        return this.front.data;
     }
 
-    //
+    // isEmpty: returns whether the queue is empty
     public boolean isEmpty()
     {
-        // to do
+        return this.front == null;
     }
 
     // For two lists to be equal they must contain the same data items in
@@ -72,13 +106,13 @@ public class LLQueue
         if (otherObject == null)
             return false;
 
-        else if (!(otherObject instanceof LLQueueForStudents))
+        else if (!(otherObject instanceof LLQueue))
         {
             return false;
         }
         else
         {
-            LLQueueForStudents otherList = (LLQueueForStudents) otherObject;
+            LLQueue otherList = (LLQueue) otherObject;
             if (size() != otherList.size())
                 return false;
             Node position = front;
@@ -101,7 +135,7 @@ public class LLQueue
         String target = "Somethings!";
         String palindrome = "a man a plan canal panama";
 
-        LLQueueForStudents list = new LLQueueForStudents();
+        LLQueue list = new LLQueue();
         // objects to be added to list
         Object object1 = (Character) target.charAt(4);
         Object object2 = (Character) target.charAt(1);
@@ -119,8 +153,9 @@ public class LLQueue
         // make sure all are added
         System.out.println("My list has " + list.size() + " nodes.");
 
+        
         // testing equals
-        LLQueueForStudents list2 = new LLQueueForStudents();
+        LLQueue list2 = new LLQueue();
         // add 4 objects to the new linked list
         list2.offer(object1);// t
         list2.offer(object2);// o
@@ -130,7 +165,7 @@ public class LLQueue
         System.out.println("list2 is equal to list1? " + isEqual2);
 
         // add 4 objects to our linked list in a different order
-        LLQueueForStudents list3 = new LLQueueForStudents();
+        LLQueue list3 = new LLQueue();
         list3.offer(object3);// m
         list3.offer(object1);// t
         list3.offer(object2);// o
