@@ -1,4 +1,3 @@
-
 /**
  * This class will use Nodes to form a linked list. It implements the LIFO (Last
  * In First Out) methodology to reverse the input string.
@@ -26,8 +25,7 @@ public class LLStack
         // Constructor with no parameters for inner class
         public Node()
         {
-            // to do
-            // to do
+            this(null, null);
         }
 
         // Parametrized constructor for inner class
@@ -35,6 +33,8 @@ public class LLStack
         {
             // to do: Data part of Node is an Object
             // to do: Link to next node is a type Node
+            this.data = newData;
+            this.next = nextLink;
         }
     }
 
@@ -45,6 +45,7 @@ public class LLStack
         // to do
         // NOTE: the logic here could be implemented in a single line,
         // but not required to be a one liner.
+        this.head = new Node(itemData, this.head);
     }
 
     // Removes the head node and returns the data Object being
@@ -52,22 +53,41 @@ public class LLStack
     // Returns null if the list is empty.
     public Object deleteHead()
     {
-        // to do
+        if (this.head == null)
+        {
+            return null;
+        }
+        Object toReturn = this.head.data;
+        this.head = this.head.next;
+        return toReturn;
     }
 
     // Returns the size of linked list by traversing the list
     public int size()
     {
-        // to do
-
-    }return count;
-
+        int count = 0;
+        Node uwu = this.head;
+        while (uwu != null)
+        {
+            uwu = uwu.next;
+            count++;
+        }
+        return count;
     }
 
     // Finds if there is match for the given object
     public boolean contains(Object item)
     {
-        // to do
+        Node uwu = this.head;
+        while (uwu != null)
+        {
+            if (item.equals(uwu.data))
+            {
+                return true;
+            }
+            uwu = uwu.next;
+        }
+        return false;
     }
 
     // Finds the first node containing the target item, and returns a
@@ -112,12 +132,12 @@ public class LLStack
 
     public boolean isEmpty()
     {
-        // to do
+        return this.head == null;
     }
 
     public void clear()
     {
-        // to do
+        this.head = null;
     }
 
     // For two lists to be equal they must contain the same data items in
